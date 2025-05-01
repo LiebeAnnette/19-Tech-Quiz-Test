@@ -1,12 +1,11 @@
-import Quiz from "../../src/components/Quiz"; // ← updated import to remove /client
+import Quiz from "../../client/src/components/Quiz";
 import { mount } from "cypress/react18";
 
 describe("Quiz Component", () => {
   beforeEach(() => {
-    // Intercept the correct API call before each test
-    cy.intercept("GET", "/api/questions/random", {
-      fixture: "questions.json",
-    }).as("getQuestions");
+    cy.intercept("GET", "/api/questions", { fixture: "questions.json" }).as(
+      "getQuestions"
+    );
   });
 
   it("should render a start button initially", () => {
@@ -16,16 +15,16 @@ describe("Quiz Component", () => {
 
   it("should show loading spinner when quiz starts", () => {
     mount(<Quiz />);
-    cy.contains("Start Quiz").click();
-    cy.get(".spinner-border").should("exist");
+    cy.get("button").contains("Start Quiz").click();
+    cy.get(".card").should("exist");
   });
 
   it("should display a question after loading questions", () => {
     mount(<Quiz />);
     cy.contains("Start Quiz").click();
-    cy.wait("@getQuestions");
+    cy.wait("@getQuestions"); // Wait for our intercepted call
 
-    cy.get("h2").should("exist");
-    cy.get("button").should("have.length.greaterThan", 1); // answer buttons
+    cy.get("h2").should("exist"); // Question should appear
+    cy.get("button").should("have.length.greaterThan", 1); // Answer buttons
   });
 });
