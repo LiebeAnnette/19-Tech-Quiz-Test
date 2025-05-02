@@ -3,7 +3,7 @@ import { mount } from "cypress/react18";
 
 describe("Quiz Component", () => {
   beforeEach(() => {
-    cy.intercept("GET", "/api/questions", { fixture: "questions.json" }).as(
+    cy.intercept("GET", "/api/questions/random", { fixture: "questions.json" }).as(
       "getQuestions"
     );
   });
