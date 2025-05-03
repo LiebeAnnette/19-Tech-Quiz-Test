@@ -26,7 +26,7 @@ cd 19-Tech-Quiz-Test
 
 2. Install dependencies:
    bash  
-    npm install
+   npm install
 
 3. Build the app:
    bash
@@ -62,7 +62,8 @@ To run tests in Cypress:
 ## Walkthrough Video
 
 You can watch a full demo of the API routes in action here:
-[TBD]
+Video Link:
+https://drive.google.com/file/d/1AOydUKFIcna-hkkTkbbueZoRs4AEF9pP/view?usp=drive_link
 
 ## Contributing
 
